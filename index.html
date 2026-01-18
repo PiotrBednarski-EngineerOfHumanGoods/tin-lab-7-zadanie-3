@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie 3 - Responsywne Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Header i nawigacja */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px 0;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-list li {
+            margin-left: 30px;
+        }
+
+        .nav-list a {
+            color: white;
+            text-decoration: none;
+            padding: 20px 0;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .nav-list a:hover {
+            color: #4CAF50;
+        }
+
+        /* Hamburger menu - domyślnie ukryty */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+
+        /* Animacja hamburgera do X */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Treść strony */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .content h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        /* Media queries dla responsywności */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-list {
+                position: fixed;
+                left: -100%;
+                top: 60px;
+                flex-direction: column;
+                background-color: #333;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+            }
+
+            .nav-list.active {
+                left: 0;
+            }
+
+            .nav-list li {
+                margin: 0;
+                border-bottom: 1px solid #444;
+            }
+
+            .nav-list a {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">MojaStrona</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-list" id="navList">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">O nas</a></li>
+                <li><a href="#services">Usługi</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <section id="home" class="section">
+            <h1>Witaj na naszej stronie!</h1>
+            <p>To jest przykładowa strona z responsywnym menu nawigacyjnym. Zmniejsz okno przeglądarki, aby zobaczyć menu hamburgerowe w akcji!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </section>
+
+        <section id="about" class="section">
+            <h1>O nas</h1>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </section>
+
+        <section id="services" class="section">
+            <h1>Nasze usługi</h1>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+        </section>
+
+        <section id="portfolio" class="section">
+            <h1>Portfolio</h1>
+            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+        </section>
+
+        <section id="contact" class="section">
+            <h1>Kontakt</h1>
+            <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+        </section>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navList = document.getElementById('navList');
+
+        // Toggle menu po kliknięciu w hamburger
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navList.classList.toggle('active');
+        });
+
+        // Zamknij menu po kliknięciu w link
+        const navLinks = document.querySelectorAll('.nav-list a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navList.classList.remove('active');
+            });
+        });
+
+        // Zamknij menu po kliknięciu poza nim
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navList.contains(event.target);
+            const isClickOnHamburger = hamburger.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickOnHamburger && navList.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navList.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
